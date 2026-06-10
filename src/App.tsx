@@ -1,6 +1,7 @@
 import { lazy, Suspense, useState } from "react";
 import { BottomNav } from "@/components/BottomNav";
 import { Header } from "@/components/Header";
+import { LandingPage } from "@/components/LandingPage";
 import { CalculatorTab } from "@/components/tabs/CalculatorTab";
 import { useMarginStore } from "@/store/useMarginStore";
 import type { TabId } from "@/types/product";
@@ -14,7 +15,17 @@ const EducationTab = lazy(() =>
 
 export default function App() {
   const [activeTab, setActiveTab] = useState<TabId>("kalkulator");
+  const [hasStarted, setHasStarted] = useState(false);
   const savedCount = useMarginStore((s) => s.savedProducts.length);
+
+  const openApp = (tab: TabId = "kalkulator") => {
+    setActiveTab(tab);
+    setHasStarted(true);
+  };
+
+  if (!hasStarted) {
+    return <LandingPage onStart={() => openApp("kalkulator")} onOpenGuide={() => openApp("edukasi")} />;
+  }
 
   return (
     <div className="relative min-h-screen bg-mm-bg font-sans text-mm-ink p-3 pb-24 sm:p-6 md:p-8 lg:p-12 flex justify-center selection:bg-mm-blue selection:text-white">
