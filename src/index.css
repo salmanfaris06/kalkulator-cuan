@@ -1,0 +1,125 @@
+@import "tailwindcss";
+
+@theme {
+  --color-mm-bg: #e5e5e5;
+  --color-mm-surface: #f7f9fa;
+  --color-mm-border: #e5e5e5;
+  --color-mm-ink: #3c4a5c;
+  --color-mm-muted: #778597;
+  --color-mm-faint: #afbaca;
+
+  --color-mm-blue: #1cb0f6;
+  --color-mm-blue-dark: #1899d6;
+  --color-mm-green: #58cc02;
+  --color-mm-green-dark: #46a302;
+  --color-mm-yellow: #ffc800;
+  --color-mm-yellow-ink: #b38c00;
+  --color-mm-red: #ff4b4b;
+  --color-mm-red-dark: #ea2b2b;
+}
+
+@layer utilities {
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .receipt-modal-scroll {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-mm-blue) transparent;
+  }
+
+  .receipt-modal-scroll::-webkit-scrollbar {
+    width: 0.75rem;
+  }
+
+  .receipt-modal-scroll::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .receipt-modal-scroll::-webkit-scrollbar-thumb {
+    min-height: 3rem;
+    border: 0.25rem solid transparent;
+    border-radius: 9999px;
+    background: var(--color-mm-blue);
+    background-clip: content-box;
+  }
+
+  .receipt-modal-scroll::-webkit-scrollbar-thumb:hover {
+    background: var(--color-mm-blue-dark);
+    background-clip: content-box;
+  }
+}
+
+:root {
+  --ease-out-strong: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out-strong: cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.dark {
+  --color-mm-bg: #111827;
+  --color-mm-surface: #172033;
+  --color-mm-border: #263247;
+  --color-mm-ink: #edf4ff;
+  --color-mm-muted: #b8c4d6;
+  --color-mm-faint: #8090a6;
+  --color-mm-yellow-ink: #ffd95a;
+}
+
+.dark .bg-white {
+  background-color: #172033;
+}
+
+.dark .border-white {
+  border-color: rgba(255, 255, 255, 0.18);
+}
+
+.dark .hover\:bg-slate-100:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+.dark [class*="#e5e5e5"] {
+  box-shadow: 0 6px 0 0 #0b1220;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slide-up {
+  from {
+    transform: translateY(2rem);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.3s ease-out;
+}
+
+.animate-slide-up {
+  animation: slide-up 0.3s ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-in,
+  .animate-slide-up {
+    animation: none;
+  }
+}
+
+body {
+  margin: 0;
+  font-family:
+    ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
